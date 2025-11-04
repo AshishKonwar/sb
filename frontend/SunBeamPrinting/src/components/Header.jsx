@@ -89,7 +89,7 @@ export default function Header() {
         <nav className="main-nav" aria-label="Primary">
           <ul className="nav-list">
             {/* Any Paper Printing */}
-            <li className="nav-item has-mega">
+            <li className="nav-item has-mega menu-item">
               <a href="#">Any Paper Printing</a>
               <div className="mega">
                 <div className="mega-content">
@@ -111,7 +111,7 @@ export default function Header() {
             </li>
 
             {/* Books */}
-            <li className="nav-item has-mega">
+            <li className="nav-item has-mega menu-item">
               <a href="#">Books</a>
               <div className="mega">
                 <div className="mega-content">
@@ -132,7 +132,7 @@ export default function Header() {
               </div>
             </li>
 
-            <li className="nav-item has-mega">
+            <li className="nav-item has-mega menu-item">
               <a href="#">Magazines</a>
               <div className="mega">
                 <div className="mega-content">
@@ -153,7 +153,7 @@ export default function Header() {
               </div>
             </li>
 
-            <li className="nav-item has-mega">
+            <li className="nav-item has-mega menu-item">
               <a href="#">Posters</a>
               <div className="mega">
                 <div className="mega-content">
@@ -174,7 +174,7 @@ export default function Header() {
               </div>
             </li>
 
-            <li className="nav-item has-mega">
+            <li className="nav-item has-mega menu-item">
               <a href="#">Binding Services</a>
               <div className="mega">
                 <div className="mega-content">
@@ -195,7 +195,7 @@ export default function Header() {
               </div>
             </li>
 
-            <li className="nav-item has-mega">
+            <li className="nav-item has-mega menu-item">
               <a href="#">Laminating</a>
               <div className="mega">
                 <div className="mega-content">
@@ -216,7 +216,7 @@ export default function Header() {
               </div>
             </li>
 
-            <li className="nav-item has-mega">
+            <li className="nav-item has-mega menu-item">
               <a href="#">Digital Printing</a>
               <div className="mega">
                 <div className="mega-content">

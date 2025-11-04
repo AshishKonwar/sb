@@ -42,7 +42,7 @@ export default function ContactUs() {
         reset();
       } else {
         setStatus("❌ Failed to send message.");
-        onsole.log(response.data.error);
+        console.log(response.data.error);
       }
     } catch (error) {
       console.error("Error sending email:", error);
