@@ -1,6 +1,8 @@
 import { AppBar, Box, Toolbar, Typography, Stack, OutlinedInput, InputAdornment, IconButton } from "@mui/material";
 import { FaSignInAlt } from "react-icons/fa";
 import books from "../assets/pictures/books.jpeg";
+import magazines from "../assets/pictures/magazines.jpg";
+import posters from "../assets/pictures/posters.jpg";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default function Header() {
@@ -145,36 +147,39 @@ export default function Header() {
                   </div>
                   <div className="mega-col image-col">
                     <img
-                      src="https://via.placeholder.com/250x200.png?text=Magazines"
-                      alt="Magazines"
+                      src={magazines}
+                      alt="Books"
                     />
                   </div>
                 </div>
               </div>
             </li>
 
-            <li className="nav-item has-mega menu-item">
-              <a href="#">Posters</a>
-              <div className="mega">
-                <div className="mega-content">
-                  <div className="mega-col">
-                    <h4>Poster Types</h4>
-                    <a href="#">Movie Posters</a>
-                    <a href="#">Event Posters</a>
-                    <a href="#">Large Format Posters</a>
-                    <a href="#">Educational Posters</a>
-                  </div>
-                  <div className="mega-col image-col">
-                    <img
-                      src="https://via.placeholder.com/250x200.png?text=Posters"
-                      alt="Posters"
-                    />
+          <li className="nav-item has-mega menu-item">
+                <a href="#">Posters</a>
+                <div className="mega">
+                  <div className="mega-content">
+                    <div className="mega-col">
+                      <h4>Poster Types</h4>
+                      <a href="#">Movie Posters</a>
+                      <a href="#">Event Posters</a>
+                      <a href="#">Large Format Posters</a>
+                      <a href="#">Educational Posters</a>
+                    </div>
+
+                    <div className="mega-col image-col">
+                      <div className="image-grid">
+                        <img src={posters} alt="Movie Poster" />
+                        <img src={posters} alt="Event Poster" />
+                        <img src={posters} alt="Large Format Poster" />
+                        <img src={posters} alt="Educational Poster" />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
+              </li>
 
-            <li className="nav-item has-mega menu-item">
+                      <li className="nav-item has-mega menu-item">
               <a href="#">Binding Services</a>
               <div className="mega">
                 <div className="mega-content">
@@ -266,82 +271,101 @@ export default function Header() {
 
         <style>
           {`
-            @keyframes scrollText {
-              0% { transform: translateX(100%); }
-              100% { transform: translateX(-100%); }
-            }
-            .nav-list {
-              display: flex;
-              gap: 1.5rem;
-              list-style: none;
-              margin: 0;
-              padding: 0 1rem;
-            }
-            .nav-item {
-              position: relative;
-            }
-            .nav-item a {
-              display: block;
-              padding: 1rem 0;
-              color: #111;
-              text-decoration: none;
-              font-weight: 500;
-            }
-            .nav-item.has-mega:hover .mega {
-              display: block;
-              opacity: 1;
-              transform: translateY(0);
-              pointer-events: auto;
-            }
-            .mega {
-              position: absolute;
-              top: 100%;
-              left: 0;
-              background: #fff;
-              border: 1px solid #eee;
-              box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-              width: 700px;
-              padding: 1.5rem;
-              display: none;
-              opacity: 0;
-              transform: translateY(10px);
-              transition: all 0.3s ease;
-              z-index: 999;
-            }
-            .mega-content {
-              display: flex;
-              gap: 2rem;
-              align-items: flex-start;
-            }
-            .mega-col {
-              flex: 1;
-              min-width: 160px;
-            }
-            .mega-col h4 {
-              font-size: 14px;
-              font-weight: 600;
-              margin-bottom: 0.5rem;
-            }
-            .mega-col a {
-              display: block;
-              color: #333;
-              text-decoration: none;
-              font-size: 14px;
-              margin: 0.25rem 0;
-              transition: color 0.2s ease;
-            }
-            .mega-col a:hover {
-              color: #0070f3;
-            }
-            .mega-col.image-col {
-              max-width: 250px;
-              flex: none;
-            }
-            .mega-col.image-col img {
-              width: 100%;
-              border-radius: 8px;
-              object-fit: cover;
-            }
+           .nav-list {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0 1rem;
+          }
+
+          .nav-item {
+            position: relative;
+          }
+
+          .nav-item a {
+            display: block;
+            padding: 1rem 0;
+            color: #111;
+            text-decoration: none;
+            font-weight: 500;
+          }
+
+          .nav-item.has-mega:hover .mega {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+          }
+
+          .mega {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border: 1px solid #eee;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            width: 1000px;
+            padding: 1.5rem;
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 999;
+          }
+
+          .mega-content {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+          }
+
+          .mega-col {
+            flex: 1;
+            min-width: 160px;
+          }
+
+          .mega-col h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          }
+
+          .mega-col a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0.25rem 0;
+            transition: color 0.2s ease;
+          }
+
+          .mega-col a:hover {
+            color: #0070f3;
+          }
+
+          /* Image column */
+          .mega-col.image-col {
+            max-width: 500px;
+            flex: none;
+          }
+
+          /* ✅ New grid styling */
+          .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+
+          /* ✅ Fix image behavior */
+          .image-grid img {
+            width: 100%;
+            height: 150px; /* fixed height prevents dropdown resizing */
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+          }
+            
           `}
         </style>
       </Box>

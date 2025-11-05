@@ -8,6 +8,7 @@ import FeaturedCollectionsCarousel from "../components/FeaturedCollectionsCarous
 import UGCGallery from "../components/UGCGallery";
 import Footer from "../components/Footer";
 import FeedbackSection from "../components/FeedbackSection";
+import AboutUsSection from "../components/AboutUsSection";
 
  export default function Home() {
    return (
@@ -15,7 +16,6 @@ import FeedbackSection from "../components/FeedbackSection";
       <CategoriesRail />
       <UGCGallery />
       <FeedbackSection />
-      <Footer />
     </>
    );
  }

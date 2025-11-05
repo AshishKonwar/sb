@@ -8,6 +8,7 @@ import Orders from "./pages/Orders";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Quotation from "./pages/Quotation";
+import Footer from "./components/Footer";
 
 // Route configuration object for better maintainability
 const routes = [
@@ -36,6 +37,8 @@ export default function App() {
           ))}
         </Routes>
       </MainLayout>
+            <Footer />
+    
     </Router>
   );
 }

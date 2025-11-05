@@ -1,32 +1,49 @@
-import { Box, Container, Grid, Stack, Typography, Card, CardContent, Avatar, Rating, IconButton } from "@mui/material";
+import { 
+  Box, 
+  Container, 
+  Grid, 
+  Stack, 
+  Typography, 
+  Card, 
+  CardContent, 
+  Avatar, 
+  Rating, 
+  IconButton 
+} from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useRef, useState, useEffect } from "react";
 
 const testimonials = [
   {
-    name: "User 1",
-    title: "Book Author",
-    // avatar: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=200&h=200&fit=crop&crop=faces",
+    name: "Priya Sharma",
+    title: "Author, 'Echoes of the Heart'",
     rating: 4.5,
-    text:
-      "I got my novel printed with Any Paper Printing and the quality was fantastic. The binding and paper finish make it look truly professional.",
+    text: "I got my book printed with Any Paper Printing, and the finish was just beautiful. The pages feel premium and the binding gives it a bookstore-quality look.",
   },
   {
-    name: "User 2",
-    title: "Marketing Manager, Bright Ads",
-    // avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=faces",
+    name: "Rohit Mehta",
+    title: "Marketing Manager, BrightEdge Media",
     rating: 5,
-    text:
-      "We needed posters and magazines for a product launch. The team delivered on time with excellent print quality and vibrant colors.",
+    text: "We ordered brochures and flyers for a campaign — they were printed on time and the colors came out perfectly vibrant. Great experience overall!",
   },
   {
-    name: "User 3",
-    title: "Owner, Nair Stationery",
-    // avatar: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=200&h=200&fit=crop&crop=faces",
+    name: "Anita Nair",
+    title: "Owner, Nair Stationers, Kochi",
     rating: 5,
-    text:
-      "Their laminating and digital printing services are top-notch. Customers love the sharp finish, and their support team is always cooperative.",
+    text: "Their digital and offset printing quality is excellent. Our customers often compliment the clarity and sharpness. The team is also very responsive.",
+  },
+  {
+    name: "Arjun Patel",
+    title: "Founder, Creative Printworks, Ahmedabad",
+    rating: 5,
+    text: "I’ve been working with Any Paper Printing for over a year. Their consistency, color accuracy, and quick delivery make them our go-to print partner.",
+  },
+  {
+    name: "Sneha Reddy",
+    title: "Event Coordinator, Hyderabad",
+    rating: 4.5,
+    text: "We got custom invitation cards and posters printed for a corporate event. The quality exceeded expectations, and delivery was super quick!",
   },
 ];
 
@@ -34,7 +51,6 @@ export default function FeedbackSection() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
-
   const scrollContainerRef = useRef(null);
 
   const checkScrollButtons = () => {
@@ -42,17 +58,16 @@ export default function FeedbackSection() {
       const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
-  
-      // calculate active index dynamically
+
       const card = scrollContainerRef.current.querySelector("div.MuiCard-root");
       if (card) {
-        const cardWidth = card.offsetWidth + 32; // card width + gap
+        const cardWidth = card.offsetWidth + 32;
         const index = Math.round(scrollLeft / cardWidth);
         setActiveIndex(index);
       }
     }
   };
-  
+
   const scroll = (direction) => {
     if (scrollContainerRef.current) {
       const card = scrollContainerRef.current.querySelector("div.MuiCard-root");
@@ -65,7 +80,7 @@ export default function FeedbackSection() {
       }
     }
   };
-  
+
   const scrollToIndex = (index) => {
     if (scrollContainerRef.current) {
       const card = scrollContainerRef.current.querySelector("div.MuiCard-root");
@@ -86,19 +101,29 @@ export default function FeedbackSection() {
       sx={{
         position: "relative",
         py: { xs: 4, md: 8 },
-        backgroundSize: "cover",
-        bgcolor: "#061727",
-        backgroundPosition: "center",
+        background: "linear-gradient(180deg, #061727 0%, #03090fff 100%)",
+        overflow: "hidden",
       }}
-    > 
-      <Box sx={{ position: "absolute", inset: 0, bgcolor: "rgba(0,0,0,0.35)" }} />
-
+    >
       <Container maxWidth="lg" sx={{ position: "relative" }}>
-        <Grid container spacing={4} alignItems="stretch">
-          <Grid item xs={12} md={5}></Grid>
+        {/* Section Title */}
+        <Typography
+          variant="h5"
+          component="h2"
+          sx={{
+            mb: 6,
+            fontWeight: 700,
+            textAlign: "center",
+            color: "#ffffff",
+          }}
+        >
+          What Our Clients Say 💬
+        </Typography>
 
-          <Grid item xs={12} md={7}>
+        <Grid container spacing={4} alignItems="stretch">
+          <Grid item xs={12}>
             <Box sx={{ position: "relative" }}>
+              {/* Navigation Buttons */}
               {canScrollLeft && (
                 <IconButton
                   onClick={() => scroll("left")}
@@ -107,11 +132,10 @@ export default function FeedbackSection() {
                     left: -18,
                     top: "50%",
                     transform: "translateY(-50%)",
-                    bgcolor: "white",
-                    color: "grey.700",
+                    bgcolor: "rgba(255,255,255,0.1)",
+                    color: "#00bcd4",
                     zIndex: 2,
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                    "&:hover": { bgcolor: "grey.50", boxShadow: 4 },
+                    "&:hover": { bgcolor: "rgba(255,255,255,0.2)" },
                   }}
                 >
                   <ChevronLeftIcon />
@@ -126,23 +150,24 @@ export default function FeedbackSection() {
                     right: -18,
                     top: "50%",
                     transform: "translateY(-50%)",
-                    bgcolor: "white",
-                    color: "grey.700",
+                    bgcolor: "rgba(255,255,255,0.1)",
+                    color: "#00bcd4",
                     zIndex: 2,
-                    boxShadow: 3,
-                    "&:hover": { bgcolor: "grey.50", boxShadow: 4 },
+                    "&:hover": { bgcolor: "rgba(255,255,255,0.2)" },
                   }}
                 >
                   <ChevronRightIcon />
                 </IconButton>
               )}
 
+              {/* Carousel */}
               <Box
                 ref={scrollContainerRef}
                 onScroll={checkScrollButtons}
                 sx={{
                   display: "flex",
                   gap: 4,
+                  padding: 5,
                   overflowX: "auto",
                   scrollbarWidth: "none",
                   msOverflowStyle: "none",
@@ -157,11 +182,16 @@ export default function FeedbackSection() {
                     sx={{
                       minWidth: 450,
                       maxWidth: 450,
-                      transition: "transform 0.2s, box-shadow 0.2s",
-                      cursor: "pointer",
+                      background: "rgba(255, 255, 255, 0.08)",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                      backdropFilter: "blur(8px)",
+                      borderRadius: 3,
+                      color: "white",
+                      transition: "transform 0.3s, box-shadow 0.3s, border-color 0.3s",
                       "&:hover": {
-                        transform: "translateY(-4px)",
-                        boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
+                        transform: "translateY(-6px)",
+                        boxShadow: "0 8px 25px rgba(0,0,0,0.3)",
+                        borderColor: "#00bcd4",
                       },
                     }}
                   >
@@ -174,21 +204,41 @@ export default function FeedbackSection() {
                           mb: 2,
                         }}
                       >
-                        <Avatar src={t.avatar} alt={t.name} />
+                        <Avatar
+                          src={t.avatar}
+                          alt={t.name}
+                          sx={{ bgcolor: "#00bcd4", color: "#fff" }}
+                        >
+                          {t.name[0]}
+                        </Avatar>
                         <Stack>
-                          <Typography variant="subtitle1" fontWeight={600}>
+                          <Typography variant="subtitle1" fontWeight={600} sx={{ color: "#00bcd4" }}>
                             {t.title}
                           </Typography>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.7)" }}>
                             {t.name}
                           </Typography>
                         </Stack>
                       </Box>
                       <CardContent sx={{ p: 0 }}>
-                        <Typography color="text.secondary" sx={{ mb: 1.5 }}>
-                          {t.text}
+                        <Typography
+                          sx={{
+                            color: "rgba(255,255,255,0.9)",
+                            mb: 1.5,
+                            fontStyle: "italic",
+                          }}
+                        >
+                          “{t.text}”
                         </Typography>
-                        <Rating precision={0.5} value={t.rating} readOnly size="small" />
+
+                        {/* 🌟 Golden Stars */}
+                        <Rating
+                          precision={0.5}
+                          value={t.rating}
+                          readOnly
+                          size="small"
+                          sx={{ color: "#FFD700" }}
+                        />
                       </CardContent>
                     </Box>
                   </Card>
@@ -199,7 +249,7 @@ export default function FeedbackSection() {
         </Grid>
 
         {/* Pagination Dots */}
-        <Stack direction="row" spacing={1} sx={{ mt: 3 }} justifyContent="center">
+        <Stack direction="row" spacing={1} sx={{ mt: 4 }} justifyContent="center">
           {testimonials.map((_, i) => (
             <Box
               key={i}
@@ -208,7 +258,7 @@ export default function FeedbackSection() {
                 width: activeIndex === i ? 12 : 8,
                 height: activeIndex === i ? 12 : 8,
                 borderRadius: "50%",
-                bgcolor: activeIndex === i ? "primary.main" : "common.white",
+                bgcolor: activeIndex === i ? "#00bcd4" : "rgba(255,255,255,0.6)",
                 opacity: activeIndex === i ? 1 : 0.6,
                 cursor: "pointer",
                 transition: "all 0.3s ease",

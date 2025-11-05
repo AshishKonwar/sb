@@ -51,8 +51,8 @@ export default function ContactUs() {
   };
 
   return (
-      <Box sx={{ p: 4, backgroundColor: "#061727", minHeight: "70vh" }}>
-      <Box sx={{ mb: 3 }}>
+      <Box sx={{ p: 4, backgroundColor: "#061727", minHeight: "100vh" }}>
+      <Box sx={{ mb: 30 }}>
         <Breadcrumbs
           aria-label="breadcrumb"
           sx={{

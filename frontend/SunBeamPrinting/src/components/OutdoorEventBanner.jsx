@@ -32,6 +32,8 @@ import FeaturedCollectionsCarousel from "./FeaturedCollectionsCarousel";
 import heroImage from "../assets/pictures/hero.png";
 import { useNavigate } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
+import CraftsmanshipSection from "./CraftmanshipSection";
+import OurServicesSection from "./OurServivesSection";
 
 export default function OutdoorEventBanner() {
   const [activeTab, setActiveTab] = useState(0); 
@@ -94,12 +96,12 @@ export default function OutdoorEventBanner() {
             variant="h3"
             component="h1"
             sx={{
-              fontWeight: 700,
+              fontWeight: 700, 
               mb: 2,
               color: "#fbfbf9e8",
             }}
           >
-            Stand Out Everywhere with
+            Stand Out Everywhere with 
           </Typography>
 
           <Typography
@@ -125,7 +127,7 @@ export default function OutdoorEventBanner() {
               fontSize: { xs: "1rem", md: "1.125rem" },
             }}
           >
-            From <strong>books and magazines</strong> to <strong>posters, binding, laminating,</strong> 
+            From <strong>books and magazines</strong> to <strong>posters, binding, laminating, </strong> 
             and <strong>digital printing</strong> — we provide everything you need 
             to shine at <em>markets, events, and beyond</em>.
           </Typography>
@@ -216,7 +218,9 @@ export default function OutdoorEventBanner() {
       </Box>
 
       {/* Category Explore Carousel */}
-      <CategoryExploreCarousel />
+      {/* <CategoryExploreCarousel /> */}
+            <OurServicesSection />
+      <CraftsmanshipSection />
 
       {/* Featured Collections Carousel */}
       <FeaturedCollectionsCarousel />
