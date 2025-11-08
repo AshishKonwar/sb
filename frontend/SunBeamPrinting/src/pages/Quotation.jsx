@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Grid,
@@ -11,9 +11,11 @@ import {
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function RequestQuotation() {
   const navigate = useNavigate();
+  const [status, setStatus] = useState("");
 
   const {
     handleSubmit,
@@ -22,10 +24,24 @@ export default function RequestQuotation() {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Quotation Request:", data);
-    alert("Request submitted successfully!");
-    reset();
+  const onSubmit = async (data) => {
+    setStatus("Sending your request...");
+
+    try {
+      const response = await axios.post("http://localhost:8000/request-quotation/", data);
+
+      if (response.data.success) {
+        setStatus("✅ Quotation request sent successfully!");
+        console.log("Quotation sent successfully:", response.data);
+        reset();
+      } else {
+        setStatus("❌ Failed to send request. Please try again.");
+        console.error("Error response:", response.data.error);
+      }
+    } catch (error) {
+      console.error("Error sending quotation request:", error);
+      setStatus("❌ Unable to send request. Check console for details.");
+    }
   };
 
   return (
@@ -99,18 +115,18 @@ export default function RequestQuotation() {
           </Box>
         </Grid>
 
-        {/* Right Side - White Form with Shadow */}
+        {/* Right Side - Form */}
         <Grid item xs={12} md={6}>
           <Paper
             sx={{
               p: 4,
               borderRadius: 2,
               backgroundColor: "#ffffff",
-              boxShadow: "0 8px 30px rgba(0, 0, 0, 0.4)", // 💠 Stronger, soft shadow
+              boxShadow: "0 8px 30px rgba(0, 0, 0, 0.4)",
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
               "&:hover": {
                 transform: "translateY(-4px)",
-                boxShadow: "0 12px 40px rgba(0, 0, 0, 0.45)", // 💠 Elevated shadow on hover
+                boxShadow: "0 12px 40px rgba(0, 0, 0, 0.45)",
               },
             }}
           >
@@ -134,7 +150,7 @@ export default function RequestQuotation() {
                 name="name"
                 control={control}
                 defaultValue=""
-                rules={{ required: "Name is required" }}
+                rules={{ required: "Your name is required ✍️" }}
                 render={({ field }) => (
                   <TextField
                     {...field}
@@ -153,10 +169,11 @@ export default function RequestQuotation() {
                 control={control}
                 defaultValue=""
                 rules={{
-                  required: "Email is required",
+                  required: "Email is required 📧",
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "Enter a valid email address",
+                    message:
+                      "Please enter a valid email — e.g. you@example.com ✉️",
                   },
                 }}
                 render={({ field }) => (
@@ -177,10 +194,10 @@ export default function RequestQuotation() {
                 control={control}
                 defaultValue=""
                 rules={{
-                  required: "Mobile number is required",
+                  required: "Mobile number is required 📱",
                   pattern: {
                     value: /^[0-9]{10}$/,
-                    message: "Enter a valid 10-digit mobile number",
+                    message: "Please enter a valid 10-digit number 🔢",
                   },
                 }}
                 render={({ field }) => (
@@ -191,6 +208,7 @@ export default function RequestQuotation() {
                     margin="normal"
                     error={!!errors.mobile}
                     helperText={errors.mobile?.message}
+                    inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                   />
                 )}
               />
@@ -217,14 +235,19 @@ export default function RequestQuotation() {
                 name="requirements"
                 control={control}
                 defaultValue=""
+                rules={{
+                  required: "Please mention your requirements 📝",
+                }}
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    label="Requirement Details"
+                    label="Requirement Details*"
                     fullWidth
                     margin="normal"
                     multiline
                     rows={3}
+                    error={!!errors.requirements}
+                    helperText={errors.requirements?.message}
                   />
                 )}
               />
@@ -234,14 +257,19 @@ export default function RequestQuotation() {
                 name="deliveryDate"
                 control={control}
                 defaultValue=""
+                rules={{
+                  required: "Please select a preferred delivery date 📅",
+                }}
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    label="Delivery Date (On/Before)"
+                    label="Delivery Date (On/Before)*"
                     type="date"
                     InputLabelProps={{ shrink: true }}
                     fullWidth
                     margin="normal"
+                    error={!!errors.deliveryDate}
+                    helperText={errors.deliveryDate?.message}
                   />
                 )}
               />
@@ -263,6 +291,21 @@ export default function RequestQuotation() {
               >
                 Send Request
               </Button>
+
+              {status && (
+                <Typography
+                  sx={{ mt: 2, fontSize: "0.9rem", textAlign: "center" }}
+                  color={
+                    status.startsWith("✅")
+                      ? "success.main"
+                      : status.startsWith("❌")
+                      ? "error.main"
+                      : "text.secondary"
+                  }
+                >
+                  {status}
+                </Typography>
+              )}
             </Box>
           </Paper>
         </Grid>

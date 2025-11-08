@@ -74,7 +74,7 @@ export default function Header() {
     }
   />
 
-  <div className="header-utilities">
+  {/* <div className="header-utilities">
     <Stack direction="row" spacing={1} alignItems="center">
       <FaSignInAlt className="text-gray-600" />
       <Stack sx={{ pb: 0.2 }}>
@@ -83,7 +83,7 @@ export default function Header() {
         </a>
       </Stack>
     </Stack>
-  </div>
+  </div> */}
 </Toolbar>
 
       {/* Main nav */}

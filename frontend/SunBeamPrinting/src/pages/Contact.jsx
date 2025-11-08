@@ -28,12 +28,6 @@ export default function ContactUs() {
     setStatus("Sending...");
 
     try {
-      // data = {
-      //   "subject": "New Contact Form Submission",
-      //   "message": "testing our shit",
-      //   "to": "deadryefield@gmail.com"
-      // }
-      // Call your backend mail API
       const response = await axios.post("http://localhost:8000/contact-form/", data);
 
       if (response.data.success) {
@@ -51,17 +45,17 @@ export default function ContactUs() {
   };
 
   return (
-      <Box sx={{ p: 4, backgroundColor: "#061727", minHeight: "100vh" }}>
+    <Box sx={{ p: 4, backgroundColor: "#061727", minHeight: "100vh" }}>
       <Box sx={{ mb: 30 }}>
         <Breadcrumbs
           aria-label="breadcrumb"
           sx={{
-            color:"#fbfbf9e8",
+            color: "#fbfbf9e8",
             fontSize: "0.85rem",
             "& a, & p": { fontSize: "0.85rem" },
           }}
         >
-         <Link
+          <Link
             underline="hover"
             color="#fbfbf9e8"
             sx={{
@@ -104,7 +98,7 @@ export default function ContactUs() {
             <Typography color="#fbfbf9e8" variant="h6" sx={{ mt: 3 }}>
               Email:
             </Typography>
-            <Typography 
+            <Typography
               variant="body1"
               sx={{ fontWeight: 600, color: "#01A9D8" }}
             >
@@ -116,13 +110,8 @@ export default function ContactUs() {
         {/* Right Side - Contact Form */}
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 4, boxShadow: 3, borderRadius: 2 }}>
-            <Box
-              component="form"
-              noValidate
-              autoComplete="off"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              {/* Name */}
+            <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+              {/* Subject */}
               <Controller
                 name="subject"
                 control={control}
@@ -134,24 +123,24 @@ export default function ContactUs() {
                     label="Subject"
                     fullWidth
                     margin="normal"
-                    error={!!errors.name}
-                    helperText={errors.name?.message}
+                    error={!!errors.subject}
+                    helperText={errors.subject?.message}
                   />
                 )}
               />
 
-              {/* Mobile No */}
-              {/* <Controller
+              {/* Mobile */}
+              <Controller
                 name="mobile"
                 control={control}
                 defaultValue=""
-                // rules={{
-                //   required: "Mobile number is required",
-                //   pattern: {
-                //     value: /^[0-9]{10}$/,
-                //     message: "Enter a valid 10-digit mobile number",
-                //   },
-                // }}
+                rules={{
+                  required: "Mobile number is required",
+                  pattern: {
+                    value: /^[0-9]{10}$/,
+                    message: "Enter a valid 10-digit mobile number",
+                  },
+                }}
                 render={({ field }) => (
                   <TextField
                     {...field}
@@ -160,22 +149,23 @@ export default function ContactUs() {
                     margin="normal"
                     error={!!errors.mobile}
                     helperText={errors.mobile?.message}
+                    inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                   />
                 )}
-              /> */}
+              />
 
               {/* Email */}
-              {/* <Controller
+              <Controller
                 name="email"
                 control={control}
                 defaultValue=""
-                // rules={{
-                //   required: "Email is required",
-                //   pattern: {
-                //     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                //     message: "Enter a valid email address",
-                //   },
-                // }}
+                rules={{
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Enter a valid email address (e.g. myemail@gmail.com)",
+                  },
+                }}
                 render={({ field }) => (
                   <TextField
                     {...field}
@@ -186,13 +176,14 @@ export default function ContactUs() {
                     helperText={errors.email?.message}
                   />
                 )}
-              /> */}
+              />
 
               {/* Message */}
               <Controller
                 name="message"
                 control={control}
                 defaultValue=""
+                rules={{ required: "Message is required" }}
                 render={({ field }) => (
                   <TextField
                     {...field}
@@ -201,6 +192,8 @@ export default function ContactUs() {
                     margin="normal"
                     multiline
                     rows={4}
+                    error={!!errors.message}
+                    helperText={errors.message?.message}
                   />
                 )}
               />
